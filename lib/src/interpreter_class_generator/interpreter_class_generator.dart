@@ -70,8 +70,15 @@ class InterpreterClassGenerator {
     _generateDecoders(methods);
     _generateMethods(methods);
     _writeInterpreters(methods, variables);
+    _generateClassLevelCode(methods);
     var classGenerator = new ClassGenerator(constructors: constructors, methods: methods, name: name, properties: properties, variables: variables);
     return classGenerator.generate();
+  }
+
+  void _generateClassLevelCode(List<String> methods) {
+    if (_classLevelCode != null) {
+      methods.addAll(_classLevelCode);
+    }
   }
 
   void _generateDecoders(List<String> methods) {

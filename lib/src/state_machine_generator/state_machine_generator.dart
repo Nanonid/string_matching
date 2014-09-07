@@ -7,20 +7,18 @@ class StateMachineGenerator extends TemplateGenerator {
 
   static final _templateCase = '''
 case {{VALUE}}:
-  {{#ACTION}}
-  break;''';
+  {{#ACTION}}''';
 
   static final _templateSwitch = '''
 switch ({{VARIABLE}}) {
   {{#CASE}}
-}
-''';
+}''';
 
   Map<int, List<String>> _actions;
 
   String _name;
 
-  StateMachineGenerator(String name, Map<int, List<String>> actions, [bool ifElse = false]) {
+  StateMachineGenerator(String name, Map<int, List<String>> actions) {
     if (name == null || name.isEmpty) {
       throw new ArgumentError("name: $name");
     }

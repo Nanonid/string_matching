@@ -1,0 +1,37 @@
+=======================================
+
+Add transitions support to ordered choices.
+
+=======================================
+
+Add instruction optimizations:
+
+Remove "rule" instructions.
+Remove "sequence element" instructions w/o actions.
+Remove "production rule" instructions w/o memoizations.
+Resolve "trusted" "character/character class" instructions and optimize them.
+
+=======================================
+
+remove duplicate instruction data
+
+=======================================
+
+Interpreter: places of expectation error reporting:
+
+choice: report all if no transitions
+
+sequence: not report
+
+unary: not report
+
+terminal: report
+
+TERMINAL <- "abc" / [0..9] # TERMINAL
+
+TERMINAL <- "abc" # abc
+
+Add property: Expression.hasCharacterClass
+---
+production rule: depends on memoization
+  report all if no cached
