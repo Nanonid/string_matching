@@ -1,0 +1,8 @@
+name: string_matching
+version: 0.0.1
+author: Andrew Mezoni <andrew.mezoni@gmail.com>
+description: String matching library (in an intensive development).
+homepage: https://github.com/mezoni/string_matching
+dependencies:
+  lists: any
+  template_block: any
