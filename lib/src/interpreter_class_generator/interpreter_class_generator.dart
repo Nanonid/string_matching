@@ -231,7 +231,7 @@ class InterpreterClassGenerator {
         }
       }
 
-      _generateMethod(new MethodParseEntryGenerator(instruction.name));
+      _generateMethod(new MethodParseEntryGenerator(instruction));
     }
 
     _addVariable(_CODE, "List<int>", "[${code.join(", ")}]");
