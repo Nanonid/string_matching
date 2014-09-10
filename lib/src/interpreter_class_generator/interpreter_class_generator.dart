@@ -223,7 +223,7 @@ class InterpreterClassGenerator {
     var data = [];
     for (var instruction in _entryPoints) {
       var compiler = new Compiler();
-      compiler.compile(instruction.instruction, code, data);
+      compiler.compile(instruction, code, data);
       for (var element in data) {
         if (element is int || element is String || element is List) {
         } else {
