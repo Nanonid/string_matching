@@ -158,7 +158,6 @@ class InterpreterClassGenerator {
     _generateMethod(new MethodExpectedGenerator());
     _generateMethod(new MethodGetFromCacheGenerator());
     _generateMethod(new MethodFlattenGenerator());
-    _generateMethod(new MethodInterpretGenerator());
     _generateMethod(new MethodResetGenerator());
     _generateMethod(new MethodToRunesGenerator());
     _generateMethod(new MethodToRuneGenerator());

@@ -1,33 +1,31 @@
 part of string_matching.interpreter_class_generator;
 
 class MethodParseEntryGenerator extends MethodGenerator {
-  static const String _INTERPRET = MethodInterpretGenerator.NAME;
+  static const String _DECODE = MethodDecodeGenerator.NAME;
 
   static const String _TEMPLATE = "TEMPLATE";
 
   static final String _template = '''
-dynamic parse_{{NAME}}() => $_INTERPRET({{CODE}}, {{DATA}});
+dynamic parse_{{NAME}}() => $_DECODE({{CP}});
 ''';
 
-  String _name;
+  final ProductionRuleInstruction instruction;
 
-  MethodParseEntryGenerator(String name) {
-    if (name == null || name.isEmpty) {
-      throw new ArgumentError("name: $name");
+  MethodParseEntryGenerator(this.instruction) {
+    if (instruction == null) {
+      throw new ArgumentError("instruction: $instruction");
     }
 
-    _name = name;
     addTemplate(_TEMPLATE, _template);
   }
 
-  String get name => _name;
+  String get name => instruction.name;
 
   List<String> generate() {
     var block = getTemplateBlock(_TEMPLATE);
-    var camelCase = camelize(_name, true);
-    block.assign("CODE", "_${camelCase}Code");
-    block.assign("DATA", "_${camelCase}Data");
-    block.assign("NAME", _name);
+    var name = camelize(instruction.name, true);
+    block.assign("CP", null);
+    block.assign("NAME", name);
     return block.process();
   }
 }

@@ -36,6 +36,5 @@ part "src/interpreter_class_generator/method_calculate_pos_generator.dart";
 part "src/interpreter_class_generator/method_decode_generator.dart";
 part "src/interpreter_class_generator/method_expected_generator.dart";
 part "src/interpreter_class_generator/method_get_from_cache_generator.dart";
-part "src/interpreter_class_generator/method_interpret.dart";
 part "src/interpreter_class_generator/method_parse_entry_generator.dart";
 part "src/interpreter_class_generator/method_reset_generator.dart";
