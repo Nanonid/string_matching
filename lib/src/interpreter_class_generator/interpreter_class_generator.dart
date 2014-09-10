@@ -89,6 +89,7 @@ class InterpreterClassGenerator {
     _methods = <String, List<String>>{};
     _mutators = <String, List<String>>{};
     _variables = <String, List<String>>{};
+    _generateConstructors();
     _generateVariables();
     _generateDecoders();
     _generateMethods();
@@ -135,6 +136,10 @@ class InterpreterClassGenerator {
     _methods[generator.name] = generator.generate();
   }
 
+  void _generateConstructors() {
+    _constructors[name] = new ClassContructorGenerator(name).generate();
+  }
+
   void _generateMethods() {
     var productionRules = <ProductionRuleInstruction>[];
     // TODO: Memoization
@@ -150,7 +155,6 @@ class InterpreterClassGenerator {
       size++;
     }
 
-    _generateMethod(new ClassContructorGenerator(name));
     _generateMethod(new AccessorColumnGenerator());
     _generateMethod(new AccessorLineGenerator());
     _generateMethod(new MethodAddToCacheGenerator(size));

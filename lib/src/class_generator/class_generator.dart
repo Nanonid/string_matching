@@ -6,6 +6,7 @@ class ClassGenerator extends TemplateGenerator {
   static final String _template = '''
 class {{CLASSNAME}} {
   {{#VARIABLES}}
+
   {{#CONSTRUCTORS}}
   {{#MUTATORS}} 
   {{#METHODS}}  
