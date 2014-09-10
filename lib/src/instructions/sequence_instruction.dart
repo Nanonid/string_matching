@@ -1,9 +1,11 @@
 part of string_matching.instructions;
 
 class SequenceInstruction extends Instruction {
-  static const int STRUCT_SEQUENCE_INSTRUCTIONS = 0;
+  static const int STRUCT_SEQUENCE_FLAG = 0;
 
-  static const int SIZE_OF_STRUCT_SEQUENCE = 1;
+  static const int STRUCT_SEQUENCE_INSTRUCTIONS = 1;
+
+  static const int SIZE_OF_STRUCT_SEQUENCE = 2;
 
   List<Instruction> instructions;
 

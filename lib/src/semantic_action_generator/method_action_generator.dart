@@ -3,7 +3,11 @@ part of string_matching.semantic_action_generator;
 class MethodActionGenerator extends MethodGenerator {
   static const String NAME = '_action';
 
+  static const String RESULT = ActionGenerator.RESULT;
+
   static const String _CP = "cp";
+
+  static const String _RESULT = GlobalNaming.RESULT;
 
   static const String _VALUE = "v";
 
@@ -11,6 +15,7 @@ class MethodActionGenerator extends MethodGenerator {
 
   static final String _template = '''
 dynamic $NAME(int $_CP, $_VALUE) {
+  var $RESULT = $_RESULT;
   {{#STATES}}
   throw new StateError("Instruction at address '\$$_CP' nas no semantic action.");  
 }

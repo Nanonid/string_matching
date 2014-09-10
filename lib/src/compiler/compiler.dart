@@ -211,14 +211,21 @@ class Compiler {
 
     var address = _writeInstruction(instruction);
     // Data
+    var flag = 0;
     var instructions = instruction.instructions;
     var structInstructions = new List<int>(instructions.length);
     var data = new List(SequenceInstruction.SIZE_OF_STRUCT_SEQUENCE);
     data[SequenceInstruction.STRUCT_SEQUENCE_INSTRUCTIONS] = structInstructions;
     for (var i = 0; i < instructions.length; i++) {
-      structInstructions[i] = _compile(instructions[i]);
+      var instruction = instructions[i];
+      if (instruction.action != 0) {
+        flag |= 1 << i;
+      }
+
+      structInstructions[i] = _compile(instruction);
     }
 
+    data[SequenceInstruction.STRUCT_SEQUENCE_FLAG] = 0;
     _code[address + Instruction.OFFSET_DATA] = _allocate(data);
     return address;
   }

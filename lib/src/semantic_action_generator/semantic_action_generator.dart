@@ -26,31 +26,46 @@ class SemanticActionGenerator extends UnifyingInstructionVisitor<Instruction> {
     _methods[_ACTION] = generator.generate();
   }
 
-  Instruction visitSequence(SequenceInstruction instruction) {
-    var instructions = instruction.instructions;
-    var length = instruction.instructions.length;
-    for (var i = 0; i < length; i++) {
-      _generate(instructions[i], i);
-    }
-
-    return instruction.accept(this);
-  }
-
-  Instruction visitSequenceElement(SequenceElementInstruction instruction) {
-    _generate(instruction, null);
-    return instruction.accept(this);
-  }
-
-  Instruction visitInstruction(Instruction instruction) {
+  visitOrderedChoice(OrderedChoiceInstruction instruction) {
     if (_visited.contains(instruction)) {
       return instruction;
     }
 
     _visited.add(instruction);
-    return instruction.accept(this);
+    instruction.visitChildren(this);
+    return instruction;
   }
 
-  void _generate(Instruction instruction, int position) {
+  visitProductionRule(ProductionRuleInstruction instruction) {
+    if (_visited.contains(instruction)) {
+      return instruction;
+    }
+
+    _visited.add(instruction);
+    instruction.instruction.accept(this);
+    return instruction;
+  }
+
+  Instruction visitSequence(SequenceInstruction instruction) {
+    var instructions = instruction.instructions;
+    var length = instruction.instructions.length;
+    for (var i = 0; i < length; i++) {
+      var child = instructions[i];
+      child.accept(this);
+      _generate(child, i, length);
+    }
+
+    return instruction;
+  }
+
+  Instruction visitSequenceElement(SequenceElementInstruction instruction) {
+    var child = instruction.instruction;
+    child.accept(this);
+    _generate(child, 0, 1);
+    return instruction;
+  }
+
+  void _generate(Instruction instruction, int position, int count) {
     var action = instruction.action;
     if (action == null) {
       return;
@@ -58,9 +73,8 @@ class SemanticActionGenerator extends UnifyingInstructionVisitor<Instruction> {
 
     var address = instruction.address;
     var name = "${_ACTION}${address}";
-    var generator = new MethodActionEntryGenerator(name, action, position);
-    _methods[name] = generator.generate();
-    _states[address] = null;
+    var generator = new ActionGenerator(action, position, count);
+    _states[address] = generator.generate();
   }
 
 }

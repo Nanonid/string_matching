@@ -144,7 +144,7 @@ class InterpreterClassGenerator {
     var productionRules = <ProductionRuleInstruction>[];
     // TODO: Memoization
     for (var instruction in _entryPoints) {
-      var resolver = new ProductionRuleFinder(instruction.instruction);
+      var resolver = new ProductionRuleFinder(instruction);
       // productionRules.addAll(resolver.productionRules.where((r) => r.memoize));
       productionRules.addAll(resolver.productionRules);
     }
@@ -170,7 +170,7 @@ class InterpreterClassGenerator {
   void _generateSemanticActions() {
     for (var instruction in _entryPoints) {
       var generator = new SemanticActionGenerator();
-      generator.generate(instruction.instruction, _methods);
+      generator.generate(instruction, _methods);
      }
   }
 

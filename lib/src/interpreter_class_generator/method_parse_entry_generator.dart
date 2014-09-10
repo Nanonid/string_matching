@@ -23,7 +23,7 @@ dynamic parse_{{NAME}}() => $_DECODE({{CP}});
 
   List<String> generate() {
     var block = getTemplateBlock(_TEMPLATE);
-    var name = camelize(instruction.name, true);
+    var name = instruction.name;
     block.assign("CP", instruction.address);
     block.assign("NAME", name);
     return block.process();
