@@ -10,9 +10,9 @@ class MethodActionGenerator extends MethodGenerator {
   static const String _TEMPLATE = "TEMPLATE";
 
   static final String _template = '''
-dynamic {{NAME}}(int $_CP, $_VALUE) {
+dynamic $NAME(int $_CP, $_VALUE) {
   {{#STATES}}
-  throw new StateError("Instruction at address $_CP nas no semantic action.");  
+  throw new StateError("Instruction at address '\$$_CP' nas no semantic action.");  
 }
 ''';
 

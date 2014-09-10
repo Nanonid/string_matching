@@ -21,7 +21,7 @@ class GlobalNaming {
 
   static const String DATA = "_data";
 
-  static const String EOF = "EOF";
+  static const String EOF = "-1";
 
   static const String EXPECTED = "_expected";
 

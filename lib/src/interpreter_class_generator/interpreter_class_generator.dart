@@ -45,7 +45,7 @@ class InterpreterClassGenerator {
 
   Map<String, List<String>> _constructors;
 
-  List<Instruction> _entryPoints;
+  List<ProductionRuleInstruction> _entryPoints;
 
   Map<int, List<String>> _instructionStates;
 
@@ -55,7 +55,7 @@ class InterpreterClassGenerator {
 
   Map<String, List<String>> _variables;
 
-  InterpreterClassGenerator(this.name, List<Instruction> entryPoints, {List<String> classLevelCode, bool memoize: false}) {
+  InterpreterClassGenerator(this.name, List<ProductionRuleInstruction> entryPoints, {List<String> classLevelCode, bool memoize: false}) {
     if (name == null) {
       throw new ArgumentError("name: $name");
     }
@@ -232,10 +232,10 @@ class InterpreterClassGenerator {
         }
       }
 
-      _generateMethod(new MethodParseEntryGenerator(name));
+      _generateMethod(new MethodParseEntryGenerator(instruction.name));
     }
 
     _addVariable(_CODE, "List<int>", "[${code.join(", ")}]");
-    _addVariable(_DATA, "List<int>", _listToString(data));
+    _addVariable(_DATA, "List", _listToString(data));
   }
 }
