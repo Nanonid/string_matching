@@ -21,7 +21,7 @@ class InterpreterGenerator extends TemplateGenerator {
 
   List<String> _topLevelCode;
 
-  InterpreterGenerator(this.name, List<Instruction> entryPoints, {List<String> classLevelCode, this.memoize: false, List<String> topLevelCode}) {
+  InterpreterGenerator(this.name, List<ProductionRuleInstruction> entryPoints, {List<String> classLevelCode, this.memoize: false, List<String> topLevelCode}) {
     if (name == null) {
       throw new ArgumentError('name: $name');
     }
