@@ -87,6 +87,7 @@ class InterpreterClassGenerator {
   List<String> generate() {
     _constructors = <String, List<String>>{};
     _methods = <String, List<String>>{};
+    _mutators = <String, List<String>>{};
     _variables = <String, List<String>>{};
     _generateVariables();
     _generateDecoders();
