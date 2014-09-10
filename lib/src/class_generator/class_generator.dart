@@ -7,22 +7,25 @@ class ClassGenerator extends TemplateGenerator {
 class {{CLASSNAME}} {
   {{#VARIABLES}}
   {{#CONSTRUCTORS}}
-  {{#PROPERTIES}} 
-  {{#METHODS}}
+  {{#MUTATORS}} 
+  {{#METHODS}}  
+  {{#CODE}}
 }
 ''';
 
-  dynamic constructors;
+  List<List<String>> code;
 
-  dynamic methods;
+  List<List<String>> constructors;
+
+  List<List<String>> methods;
 
   String name;
 
-  dynamic properties;
+  List<List<String>> mutators;
 
-  dynamic variables;
+  List<List<String>> variables;
 
-  ClassGenerator({this.constructors, this.methods, this.name, this.properties, this.variables}) {
+  ClassGenerator({this.code, this.constructors, this.methods, this.mutators, this.name, this.variables}) {
     if (name == null || name.isEmpty) {
       throw new ArgumentError("name: $name");
     }
@@ -37,12 +40,16 @@ class {{CLASSNAME}} {
       block.assign("#VARIABLES", variables);
     }
 
+    if (code != null) {
+      block.assign("#CODE", code);
+    }
+
     if (constructors != null) {
       block.assign("#CONSTRUCTORS", constructors);
     }
 
-    if (properties != null) {
-      block.assign("#PROPERTIES", properties);
+    if (mutators != null) {
+      block.assign("#MUTATORS", mutators);
     }
 
     if (methods != null) {

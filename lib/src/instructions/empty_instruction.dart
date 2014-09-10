@@ -8,8 +8,4 @@ class EmptyInstruction extends Instruction {
   Object accept(InstructionVisitor visitor) {
     return visitor.visitEmpty(this);
   }
-
-  Object visitChildren(InstructionVisitor visitor) {
-    return this;
-  }
 }

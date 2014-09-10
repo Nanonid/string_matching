@@ -1,6 +1,6 @@
 part of string_matching.helper_methods_generators;
 
-class MethodToRunesGenerator extends TemplateGenerator {
+class MethodToRunesGenerator extends MethodGenerator {
   static const String NAME = "_toRunes";
 
   static const String _TEMPLATE = "TEMPLATE";
@@ -41,9 +41,11 @@ List<int> $NAME(String string) {
 }
 ''';
 
-MethodToRunesGenerator() {
+  MethodToRunesGenerator() {
     addTemplate(_TEMPLATE, _template);
   }
+
+  String get name => NAME;
 
   List<String> generate() {
     var block = getTemplateBlock(_TEMPLATE);

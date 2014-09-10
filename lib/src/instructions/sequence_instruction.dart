@@ -22,6 +22,11 @@ class SequenceInstruction extends Instruction {
   }
 
   Object visitChildren(InstructionVisitor visitor) {
-    return this;
+    var list = <Instruction>[];
+    for (var instruction in instructions) {
+      list.add(instruction.accept(visitor));
+    }
+
+    return list;
   }
 }

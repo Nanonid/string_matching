@@ -21,13 +21,13 @@ class InterpreterGenerator extends TemplateGenerator {
 
   List<String> _topLevelCode;
 
-  InterpreterGenerator(this.name, List<Interpreter> interpreters, {List<String> classLevelCode, this.memoize: false, List<String> topLevelCode}) {
+  InterpreterGenerator(this.name, List<Instruction> entryPoints, {List<String> classLevelCode, this.memoize: false, List<String> topLevelCode}) {
     if (name == null) {
       throw new ArgumentError('name: $name');
     }
 
-    if (interpreters == null) {
-      throw new ArgumentError('interpreters: $interpreters');
+    if (entryPoints == null) {
+      throw new ArgumentError('interpreters: $entryPoints');
     }
 
     if (memoize == null) {
@@ -35,7 +35,7 @@ class InterpreterGenerator extends TemplateGenerator {
     }
 
     addTemplate(_TEMPLATE, _template);
-    _interpreterClassGenerator = new InterpreterClassGenerator(name, interpreters, classLevelCode: classLevelCode, memoize: memoize);
+    _interpreterClassGenerator = new InterpreterClassGenerator(name, entryPoints, classLevelCode: classLevelCode, memoize: memoize);
     _topLevelCode = topLevelCode;
   }
 

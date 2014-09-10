@@ -1,6 +1,6 @@
 part of string_matching.interpreter_class_generator;
 
-class MethodCalculatePosGenerator extends TemplateGenerator {
+class MethodCalculatePosGenerator extends MethodGenerator {
   static const String NAME = "_calculatePos";
 
   static const String _COLUMN = GlobalNaming.COLUMN;
@@ -41,6 +41,8 @@ void $NAME(int pos) {
   MethodCalculatePosGenerator() {
     addTemplate(_TEMPLATE, _template);
   }
+
+  String get name => NAME;
 
   List<String> generate() {
     return getTemplateBlock(_TEMPLATE).process();

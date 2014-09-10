@@ -1,9 +1,7 @@
 part of string_matching.instructions;
 
-class SequenceElemenInstruction extends UnaryInstruction {
-  static const int OFFSET_INSTRUCTION = 0;
-
-  SequenceElemenInstruction(Instruction instruction) : super(instruction);
+class SequenceElementInstruction extends UnaryInstruction {
+  SequenceElementInstruction(Instruction instruction) : super(instruction);
 
   InstructionTypes get type => InstructionTypes.SEQUENCE_ELEMENT;
 
@@ -12,6 +10,6 @@ class SequenceElemenInstruction extends UnaryInstruction {
   }
 
   Object visitChildren(InstructionVisitor visitor) {
-    return this;
+    return instruction.accept(visitor);
   }
 }

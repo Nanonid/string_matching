@@ -43,11 +43,9 @@ class InstructionTypes {
 abstract class Instruction {
   static const int OFFSET_ID = 0;
 
-  static const int OFFSET_ACTION = 1;
+  static const int OFFSET_DATA = 1;
 
-  static const int OFFSET_DATA = 2;
-
-  static const int MIN_SIZE = 2;
+  static const int MIN_SIZE = 1;
 
   List<String> action;
 
@@ -59,7 +57,9 @@ abstract class Instruction {
 
   Object accept(InstructionVisitor visitor);
 
-  Object visitChildren(InstructionVisitor visitor);
+  Object visitChildren(InstructionVisitor visitor) {
+    return null;
+  }
 
   String toString() => type.toString();
 }

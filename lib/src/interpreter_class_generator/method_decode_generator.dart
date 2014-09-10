@@ -1,6 +1,6 @@
 part of string_matching.interpreter_class_generator;
 
-class MethodDecodeGenerator extends TemplateGenerator {
+class MethodDecodeGenerator extends MethodGenerator {
   static const String NAME = "_decode";
 
   static const String _CODE = GlobalNaming.CODE;
@@ -13,7 +13,7 @@ class MethodDecodeGenerator extends TemplateGenerator {
 void $NAME(int cp) {
   var $_OP = $_CODE[cp];
   {{#STATES}}
-  throw new StateError("Unknown instrcution $_OP");    
+  throw new StateError("Illegal instruction $_OP");    
 }
 ''';
 
@@ -34,16 +34,16 @@ void $NAME(int cp) {
     _generators = generators;
   }
 
+  String get name => NAME;
+
   List<String> generate() {
     var block = getTemplateBlock(_TEMPLATE);
     var states = _generateStates();
     var stateMachine = new StateMachineGenerator("$_OP", states);
-    stateMachine.generate();
     block.assign("#STATES", stateMachine.generate());
     return block.process();
   }
 
-  // TODO: Default state with "bad state error"
   Map<int, List<String>> _generateStates() {
     var states = <int, List<String>>{};
     for (var generator in _generators) {

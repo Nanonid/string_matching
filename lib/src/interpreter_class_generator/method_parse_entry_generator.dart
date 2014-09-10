@@ -1,6 +1,6 @@
 part of string_matching.interpreter_class_generator;
 
-class MethodParseEntryGenerator extends TemplateGenerator {
+class MethodParseEntryGenerator extends MethodGenerator {
   static const String _INTERPRET = MethodInterpretGenerator.NAME;
 
   static const String _TEMPLATE = "TEMPLATE";
@@ -19,6 +19,8 @@ dynamic parse_{{NAME}}() => $_INTERPRET({{CODE}}, {{DATA}});
     _name = name;
     addTemplate(_TEMPLATE, _template);
   }
+
+  String get name => _name;
 
   List<String> generate() {
     var block = getTemplateBlock(_TEMPLATE);

@@ -27,7 +27,7 @@ class UnifyingInstructionVisitor<T> implements InstructionVisitor<T> {
 
   T visitSequence(SequenceInstruction instruction) => visitInstruction(instruction);
 
-  T visitSequenceElement(SequenceElemenInstruction instruction) => visitInstruction(instruction);
+  T visitSequenceElement(SequenceElementInstruction instruction) => visitInstruction(instruction);
 
   T visitZeroOrMore(ZeroOrMoreInstruction instruction) => visitInstruction(instruction);
 

@@ -1,6 +1,6 @@
 part of string_matching.interpreter_class_generator;
 
-class MethodGetFromCacheGenerator extends TemplateGenerator {
+class MethodGetFromCacheGenerator extends MethodGenerator {
   static const String NAME = "_getFromCache";
 
   static const String _CACHE = GlobalNaming.CACHE;
@@ -67,6 +67,8 @@ dynamic $NAME(int id) {
   MethodGetFromCacheGenerator() {
     addTemplate(_TEMPLATE, _template);
   }
+
+  String get name => NAME;
 
   List<String> generate() {
     return getTemplateBlock(_TEMPLATE).process();

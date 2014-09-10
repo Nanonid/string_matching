@@ -1,7 +1,7 @@
 part of string_matching.interpreter_class_generator;
 
-class MethodInterpretGenerator extends TemplateGenerator {
-  static const String NAME = "interpret";
+class MethodInterpretGenerator extends MethodGenerator {
+  static const String NAME = "_interpret";
 
   static const String _CODE = GlobalNaming.CODE;
 
@@ -16,7 +16,7 @@ class MethodInterpretGenerator extends TemplateGenerator {
   static final String _template = '''
 dynamic $NAME(List<int> code, List data) {
   $_CODE = code;
-  $_DATA = data;  
+  $_DATA = data;
   $_DECODE(0);
   return $_RESULT;    
 }
@@ -25,6 +25,8 @@ dynamic $NAME(List<int> code, List data) {
   MethodInterpretGenerator() {
     addTemplate(_TEMPLATE, _template);
   }
+
+  String get name => NAME;
 
   List<String> generate() {
     var block = getTemplateBlock(_TEMPLATE);

@@ -1,6 +1,6 @@
 part of string_matching.interpreter_class_generator;
 
-abstract class DecoderGenerator extends TemplateGenerator {
+abstract class DecoderGenerator extends MethodGenerator {
   static const String VARIABLE_CP = "cp";
 
   static const String VARIABLE_EXPECTED = "expected";
@@ -90,8 +90,6 @@ if ($_CURSOR < $_INPUT_LEN) {
   }
 
   InstructionTypes get instructionType;
-
-  String get name;
 
   String dataFromCode(String cp) {
     return "$_CODE[$cp + ${Instruction.OFFSET_DATA}]";

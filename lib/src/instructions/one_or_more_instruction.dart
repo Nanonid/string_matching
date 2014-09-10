@@ -8,8 +8,4 @@ class OneOrMoreInstruction extends UnaryInstruction {
   Object accept(InstructionVisitor visitor) {
     return visitor.visitOneOrMore(this);
   }
-
-  Object visitChildren(InstructionVisitor visitor) {
-    return this;
-  }
 }

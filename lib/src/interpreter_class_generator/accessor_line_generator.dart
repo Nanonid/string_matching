@@ -1,6 +1,6 @@
 part of string_matching.interpreter_class_generator;
 
-class AccessorLineGenerator extends TemplateGenerator {
+class AccessorLineGenerator extends MethodGenerator {
   static const String NAME = "line";
 
   static const String _CALCULATE_POS = MethodCalculatePosGenerator.NAME;
@@ -23,6 +23,8 @@ int get $NAME {
   AccessorLineGenerator() {
     addTemplate(_TEMPLATE, _template);
   }
+
+  String get name => NAME;
 
   List<String> generate() {
     return getTemplateBlock(_TEMPLATE).process();

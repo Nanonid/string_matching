@@ -1,6 +1,6 @@
 part of string_matching.interpreter_class_generator;
 
-class MethodExpectedGenerator extends TemplateGenerator {
+class MethodExpectedGenerator extends MethodGenerator {
   static const String NAME = "expected";
 
   static const String _EXPECTED = GlobalNaming.EXPECTED;
@@ -23,6 +23,8 @@ List<String> get $NAME {
   MethodExpectedGenerator() {
     addTemplate(_TEMPLATE, _template);
   }
+
+  String get name => NAME;
 
   List<String> generate() {
     return getTemplateBlock(_TEMPLATE).process();

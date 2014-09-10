@@ -8,8 +8,4 @@ class OptionalInstruction extends UnaryInstruction {
   Object accept(InstructionVisitor visitor) {
     return visitor.visitOptional(this);
   }
-
-  Object visitChildren(InstructionVisitor visitor) {
-    return this;
-  }
 }

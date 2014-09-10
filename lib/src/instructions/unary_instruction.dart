@@ -12,4 +12,8 @@ abstract class UnaryInstruction extends Instruction {
   }
 
   int get size => Instruction.MIN_SIZE + 1;
+
+  Object visitChildren(InstructionVisitor visitor) {
+    return instruction.accept(visitor);
+  }
 }

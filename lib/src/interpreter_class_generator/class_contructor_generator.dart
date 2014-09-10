@@ -1,6 +1,6 @@
 part of string_matching.interpreter_class_generator;
 
-class ClassContructorGenerator extends TemplateGenerator {
+class ClassContructorGenerator extends MethodGenerator {
   static const String _INPUT_LEN = GlobalNaming.INPUT_LEN;
 
   static const String _RUNES = GlobalNaming.RUNES;

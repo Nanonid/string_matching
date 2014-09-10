@@ -6,8 +6,8 @@ import "package:string_matching/generators.dart";
 import "package:string_matching/global_naming.dart";
 import "package:string_matching/helper_methods_generators.dart";
 import "package:string_matching/instructions.dart";
-import "package:string_matching/interpreter.dart";
 import "package:string_matching/resolvers.dart";
+import "package:string_matching/semantic_action_generator.dart";
 import "package:string_matching/state_machine_generator.dart";
 import "package:strings/strings.dart";
 

@@ -30,6 +30,6 @@ class ProductionRuleInstruction extends Instruction {
   }
 
   Object visitChildren(InstructionVisitor visitor) {
-    return this;
+    return instruction.accept(visitor);
   }
 }

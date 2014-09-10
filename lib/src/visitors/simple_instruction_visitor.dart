@@ -27,7 +27,7 @@ class SimpleInstructionVisitor<T> implements InstructionVisitor<T> {
 
   T visitSequence(SequenceInstruction instruction) => null;
 
-  T visitSequenceElement(SequenceElemenInstruction instruction) => null;
+  T visitSequenceElement(SequenceElementInstruction instruction) => null;
 
   T visitZeroOrMore(ZeroOrMoreInstruction instruction) => null;
 }

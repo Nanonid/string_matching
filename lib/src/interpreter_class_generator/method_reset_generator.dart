@@ -1,6 +1,6 @@
 part of string_matching.interpreter_class_generator;
 
-class MethodResetGenerator extends TemplateGenerator {
+class MethodResetGenerator extends MethodGenerator {
   static const String NAME = "reset";
 
   static const String _CACHE = GlobalNaming.CACHE;
@@ -73,6 +73,8 @@ void $NAME(int pos) {
   MethodResetGenerator() {
     addTemplate(_TEMPLATE, _template);
   }
+
+  String get name => NAME;
 
   List<String> generate() {
     var block = getTemplateBlock(_TEMPLATE);

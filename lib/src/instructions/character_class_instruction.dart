@@ -32,8 +32,4 @@ class CharacterClassInstruction extends Instruction {
   Object accept(InstructionVisitor visitor) {
     return visitor.visitCharacterClass(this);
   }
-
-  Object visitChildren(InstructionVisitor visitor) {
-    return this;
-  }
 }

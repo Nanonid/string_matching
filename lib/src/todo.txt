@@ -35,3 +35,12 @@ Add property: Expression.hasCharacterClass
 ---
 production rule: depends on memoization
   report all if no cached
+
+=======================================
+
+Semantic Action optimization
+
+Sequence action(cp, list)
+SequenceElement(cp, value)
+
+=======================================

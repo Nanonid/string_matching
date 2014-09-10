@@ -1,6 +1,6 @@
 part of string_matching.helper_methods_generators;
 
-class MethodToRuneGenerator extends TemplateGenerator {
+class MethodToRuneGenerator extends MethodGenerator {
   static const String NAME = "_toRune";
 
   static const String _TEMPLATE = "TEMPLATE";
@@ -35,6 +35,8 @@ int _toRune(String string) {
   MethodToRuneGenerator() {
     addTemplate(_TEMPLATE, _template);
   }
+
+  String get name => NAME;
 
   List<String> generate() {
     var block = getTemplateBlock(_TEMPLATE);

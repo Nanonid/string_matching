@@ -8,8 +8,4 @@ class NotPredicateInstruction extends UnaryInstruction {
   Object accept(InstructionVisitor visitor) {
     return visitor.visitNotPredicate(this);
   }
-
-  Object visitChildren(InstructionVisitor visitor) {
-    return this;
-  }
 }

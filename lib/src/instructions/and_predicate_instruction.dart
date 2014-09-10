@@ -8,8 +8,4 @@ class AndPredicateInstruction extends UnaryInstruction {
   Object accept(InstructionVisitor visitor) {
     return visitor.visitAndPredicate(this);
   }
-
-  Object visitChildren(InstructionVisitor visitor) {
-    return this;
-  }
 }

@@ -8,8 +8,4 @@ class AnyCharacterInstruction extends Instruction {
   Object accept(InstructionVisitor visitor) {
     return visitor.visitAnyCharacter(this);
   }
-
-  Object visitChildren(InstructionVisitor visitor) {
-    return this;
-  }
 }

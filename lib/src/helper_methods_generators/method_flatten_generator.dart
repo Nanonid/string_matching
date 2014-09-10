@@ -1,6 +1,6 @@
 part of string_matching.helper_methods_generators;
 
-class MethodFlattenGenerator extends TemplateGenerator {
+class MethodFlattenGenerator extends MethodGenerator {
   static const String NAME = "_flatten";
 
   static const String _TEMPLATE = "TEMPLATE";
@@ -36,6 +36,8 @@ List $NAME(dynamic value) {
   MethodFlattenGenerator() {
     addTemplate(_TEMPLATE, _template);
   }
+
+  String get name => NAME;
 
   List<String> generate() {
     var block = getTemplateBlock(_TEMPLATE);

@@ -94,7 +94,7 @@ class InstructionCloner<T extends Instruction> implements InstructionVisitor<T> 
       return clone;
     }
 
-    clone = new ProductionRuleInstruction(instruction.productionRule, null);
+    clone = new ProductionRuleInstruction(instruction.id, instruction.name, null);
     _visited[instruction] = clone;
     clone.instruction = instruction.instruction.accept(this);
     return clone;
@@ -113,8 +113,8 @@ class InstructionCloner<T extends Instruction> implements InstructionVisitor<T> 
     return new SequenceInstruction(instructions);
   }
 
-  Instruction visitSequenceElement(SequenceElemenInstruction instruction) {
-    return new SequenceElemenInstruction(instruction.instruction.accept(this));
+  Instruction visitSequenceElement(SequenceElementInstruction instruction) {
+    return new SequenceElementInstruction(instruction.instruction.accept(this));
   }
 
   Instruction visitZeroOrMore(ZeroOrMoreInstruction instruction) {

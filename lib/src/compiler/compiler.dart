@@ -8,6 +8,18 @@ class Compiler {
   Map<dynamic, List<int>> _entries;
 
   void compile(Instruction instruction, List<int> code, List data) {
+    if (instruction == null) {
+      throw new ArgumentError("instruction: $instruction");
+    }
+
+    if (code == null) {
+      throw new ArgumentError("code: $code");
+    }
+
+    if (data == null) {
+      throw new ArgumentError("data: $data");
+    }
+
     _code = code;
     _data = data;
     _entries = <dynamic, List<int>>{};

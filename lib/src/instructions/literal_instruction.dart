@@ -22,8 +22,4 @@ class LiteralInstruction extends Instruction {
   Object accept(InstructionVisitor visitor) {
     return visitor.visitLiteral(this);
   }
-
-  Object visitChildren(InstructionVisitor visitor) {
-    return this;
-  }
 }

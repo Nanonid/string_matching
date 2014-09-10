@@ -27,7 +27,7 @@ abstract class InstructionVisitor<T> {
 
   T visitSequence(SequenceInstruction instruction);
 
-  T visitSequenceElement(SequenceElemenInstruction instruction);
+  T visitSequenceElement(SequenceElementInstruction instruction);
 
   T visitZeroOrMore(ZeroOrMoreInstruction instruction);
 }
