@@ -1,7 +1,7 @@
 part of string_matching.semantic_action_generator;
 
 class MethodActionGenerator extends MethodGenerator {
-  static const String NAME = '_action';
+  static const String NAME = GlobalNaming.ACTION;
 
   static const String RESULT = ActionGenerator.RESULT;
 

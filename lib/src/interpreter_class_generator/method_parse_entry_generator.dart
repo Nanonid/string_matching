@@ -3,10 +3,15 @@ part of string_matching.interpreter_class_generator;
 class MethodParseEntryGenerator extends MethodGenerator {
   static const String _DECODE = MethodDecodeGenerator.NAME;
 
+  static const String _RESULT = GlobalNaming.RESULT;
+
   static const String _TEMPLATE = "TEMPLATE";
 
   static final String _template = '''
-dynamic parse_{{NAME}}() => $_DECODE({{CP}});
+dynamic parse_{{NAME}}() {
+  $_DECODE({{CP}});
+  return $_RESULT;
+}
 ''';
 
   final ProductionRuleInstruction instruction;

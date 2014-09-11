@@ -1,6 +1,6 @@
-part of string_matching.interpreter_class_generator;
+part of string_matching.decoder_generators;
 
-class DecoderLiteralGenerator extends DecoderGenerator {
+class LiteralDecoderGenerator extends DecoderGenerator {
   static const String NAME = "_literal";
 
   static const String _CURSOR = GlobalNaming.CURSOR;
@@ -46,7 +46,7 @@ void $NAME(int cp) {
 }
 ''';
 
-  DecoderLiteralGenerator(InterpreterClassGenerator interpreterClassGenerator) : super(interpreterClassGenerator) {
+  LiteralDecoderGenerator() {
     addTemplate(_TEMPLATE, _template);
   }
 

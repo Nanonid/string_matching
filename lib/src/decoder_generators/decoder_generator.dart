@@ -1,4 +1,4 @@
-part of string_matching.interpreter_class_generator;
+part of string_matching.decoder_generators;
 
 abstract class DecoderGenerator extends MethodGenerator {
   static const String VARIABLE_CP = "cp";
@@ -75,13 +75,7 @@ if ($_CURSOR < $_INPUT_LEN) {
   $_CH = $_EOF;
 }''';
 
-  final InterpreterClassGenerator interpreterClassGenerator;
-
-  DecoderGenerator(this.interpreterClassGenerator) {
-    if (interpreterClassGenerator == null) {
-      throw new ArgumentError("interpreterClassGenerator: $interpreterClassGenerator");
-    }
-
+  DecoderGenerator() {
     addTemplate(_TEMPLATE_CH_TO_STRING, _templateChToString);
     addTemplate(_TEMPLATE_EXPECTED_VALUE, _templateExpectedValue);
     addTemplate(_TEMPLATE_EXPECTED_VALUES, _templateExpectedValues);

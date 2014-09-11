@@ -1,13 +1,13 @@
-part of string_matching.interpreter_class_generator;
+part of string_matching.decoder_generators;
 
-class DecoderNotPredicateGenerator extends DecoderGenerator {
-  static const String NAME = "_notPredicate";
+class AndPredicateDecoderGenerator extends DecoderGenerator {
+  static const String NAME = "_andPredicate";
 
   static const String _CH = GlobalNaming.CH;
 
   static const String _CURSOR = GlobalNaming.CURSOR;
 
-  static const String _DECODE = MethodDecodeGenerator.NAME;
+  static const String _DECODE = GlobalNaming.DECODE;
 
   static const String _INPUT_LEN = GlobalNaming.INPUT_LEN;
 
@@ -28,16 +28,15 @@ void $NAME(int cp) {
   $_DECODE({{DATA}});
   $_TESTING = testing;
   $_CURSOR = cursor;
-  $_CH = ch;
-  $_SUCCESS = !$_SUCCESS;   
+  $_CH = ch;   
 }
 ''';
 
-  DecoderNotPredicateGenerator(InterpreterClassGenerator interpreterClassGenerator) : super(interpreterClassGenerator) {
+  AndPredicateDecoderGenerator() {
     addTemplate(_TEMPLATE, _template);
   }
 
-  InstructionTypes get instructionType => InstructionTypes.NOT_PREDICATE;
+  InstructionTypes get instructionType => InstructionTypes.AND_PREDICATE;
 
   String get name => NAME;
 

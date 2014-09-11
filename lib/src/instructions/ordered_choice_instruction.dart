@@ -1,7 +1,9 @@
 part of string_matching.instructions;
 
 class OrderedChoiceInstruction extends Instruction {
-  static const int FLAG_IS_OPTIONAL = 1;
+  static const int FLAG_IS_ALWAYS_OPTIONAL = 1;
+
+  static const int FLAG_IS_ALWAYS_ZERO_OR_MORE = 2;
 
   static const int STRUCT_ORDERED_CHOICE_FLAG = 0;
 
@@ -19,19 +21,19 @@ class OrderedChoiceInstruction extends Instruction {
 
   static const int SIZE_OF_STRUCT_TRANSITION = 3;
 
+  int flag;
+
   List<Instruction> instructions;
 
   SparseList<List<Instruction>> transitions;
 
-  bool isOptional;
-
-  OrderedChoiceInstruction(this.instructions, this.transitions, this.isOptional) {
+  OrderedChoiceInstruction(this.instructions, this.transitions, this.flag) {
     if (transitions == null) {
       throw new ArgumentError("transitions: $transitions");
     }
 
-    if (isOptional == null) {
-      throw new ArgumentError("isOptional: $isOptional");
+    if (flag == null) {
+      throw new ArgumentError("flag: $flag");
     }
   }
 

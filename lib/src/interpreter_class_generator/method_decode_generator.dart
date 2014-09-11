@@ -1,7 +1,7 @@
 part of string_matching.interpreter_class_generator;
 
 class MethodDecodeGenerator extends MethodGenerator {
-  static const String NAME = "_decode";
+  static const String NAME = GlobalNaming.DECODE;
 
   static const String _CODE = GlobalNaming.CODE;
 
@@ -27,7 +27,7 @@ void $NAME(int cp) {
     }
 
     if (generators == null) {
-       throw new ArgumentError("generators: $generators");
+      throw new ArgumentError("generators: $generators");
     }
 
     addTemplate(_TEMPLATE, _template);

@@ -45,7 +45,7 @@ class InterpreterGenerator extends TemplateGenerator {
 
   List<String> generate() {
     var block = getTemplateBlock(_TEMPLATE);
-    if(_topLevelCode != null) {
+    if (_topLevelCode != null) {
       block.assign('#GLOBALS', _topLevelCode);
     }
 

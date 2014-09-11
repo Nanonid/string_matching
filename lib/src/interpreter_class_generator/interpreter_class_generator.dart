@@ -110,21 +110,21 @@ class InterpreterClassGenerator {
 
   void _generateDecoders() {
     var generators = <DecoderGenerator>[];
-    generators.add(new DecoderAndPredicateGenerator(this));
-    generators.add(new DecoderAnyCharacterGenerator(this));
-    generators.add(new DecoderCharacterClassGenerator(this));
-    generators.add(new DecoderCharacterGenerator(this));
-    generators.add(new DecoderEmptyGenerator(this));
-    generators.add(new DecoderLiteralGenerator(this));
-    generators.add(new DecoderNotPredicateGenerator(this));
-    generators.add(new DecoderOneOrMoreGenerator(this));
-    generators.add(new DecoderOptionalGenerator(this));
-    generators.add(new DecoderOrderedChoiceGenerator(this));
-    generators.add(new DecoderProductionRuleGenerator(this));
-    generators.add(new DecoderRuleGenerator(this));
-    generators.add(new DecoderSequenceElementGenerator(this));
-    generators.add(new DecoderSequenceGenerator(this));
-    generators.add(new DecoderZeroOrMoreGenerator(this));
+    generators.add(new AndPredicateDecoderGenerator());
+    generators.add(new AnyCharacterDecoderGenerator());
+    generators.add(new CharacterClassDecoderGenerator());
+    generators.add(new CharacterDecoderGenerator());
+    generators.add(new EmptyDecoderGenerator());
+    generators.add(new LiteralDecoderGenerator());
+    generators.add(new NotPredicateDecoderGenerator());
+    generators.add(new OneOrMoreDecoderGenerator());
+    generators.add(new OptionalDecoderGenerator());
+    generators.add(new OrderedChoiceDecoderGenerator());
+    generators.add(new ProductionRuleDecoderGenerator());
+    generators.add(new RuleDecoderGenerator());
+    generators.add(new SequenceDecoderGenerator());
+    generators.add(new SequenceElementDecoderGenerator());
+    generators.add(new ZeroOrMoreDecoderGenerator());
     for (var generator in generators) {
       _generateMethod(generator);
     }
@@ -157,6 +157,7 @@ class InterpreterClassGenerator {
 
     _generateMethod(new AccessorColumnGenerator());
     _generateMethod(new AccessorLineGenerator());
+    _generateMethod(new AcessorUnexpectedGenerator());
     _generateMethod(new MethodAddToCacheGenerator(size));
     _generateMethod(new MethodCalculatePosGenerator());
     _generateMethod(new MethodExpectedGenerator());
@@ -171,7 +172,7 @@ class InterpreterClassGenerator {
     for (var instruction in _entryPoints) {
       var generator = new SemanticActionGenerator();
       generator.generate(instruction, _methods);
-     }
+    }
   }
 
   void _generateVariables() {

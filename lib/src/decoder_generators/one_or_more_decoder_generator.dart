@@ -1,13 +1,11 @@
-part of string_matching.interpreter_class_generator;
+part of string_matching.decoder_generators;
 
-class DecoderAndPredicateGenerator extends DecoderGenerator {
-  static const String NAME = "_andPredicate";
+class OneOrMoreDecoderGenerator extends DecoderGenerator {
+  static const String NAME = "_oneOrMore";
 
   static const String _CH = GlobalNaming.CH;
 
-  static const String _CURSOR = GlobalNaming.CURSOR;
-
-  static const String _DECODE = MethodDecodeGenerator.NAME;
+  static const String _DECODE = GlobalNaming.DECODE;
 
   static const String _INPUT_LEN = GlobalNaming.INPUT_LEN;
 
@@ -21,22 +19,32 @@ class DecoderAndPredicateGenerator extends DecoderGenerator {
 
   static final String _template = '''
 void $NAME(int cp) {
-  var ch = $_CH;
-  var cursor = $_CURSOR;
-  var testing = $_TESTING;
-  $_TESTING = $_INPUT_LEN + 1;
-  $_DECODE({{DATA}});
+  cp = {{DATA}};    
+  $_DECODE(cp);
+  if (!$_SUCCESS) {    
+    return;  
+  }  
+  var elements = [$_RESULT];
+  var testing = $_TESTING;  
+  while(true) {
+    $_TESTING = $_INPUT_LEN + 1;
+    $_DECODE(cp);
+    if (!$_SUCCESS) {
+      break;
+    }
+    elements.add($_RESULT);     
+  }
   $_TESTING = testing;
-  $_CURSOR = cursor;
-  $_CH = ch;   
+  $_RESULT = elements;
+  $_SUCCESS = true;  
 }
 ''';
 
-  DecoderAndPredicateGenerator(InterpreterClassGenerator interpreterClassGenerator) : super(interpreterClassGenerator) {
+  OneOrMoreDecoderGenerator() {
     addTemplate(_TEMPLATE, _template);
   }
 
-  InstructionTypes get instructionType => InstructionTypes.AND_PREDICATE;
+  InstructionTypes get instructionType => InstructionTypes.ONE_OR_MORE;
 
   String get name => NAME;
 

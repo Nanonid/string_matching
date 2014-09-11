@@ -1,13 +1,13 @@
-part of string_matching.interpreter_class_generator;
+part of string_matching.decoder_generators;
 
-class DecoderOrderedChoiceGenerator extends DecoderGenerator {
+class OrderedChoiceDecoderGenerator extends DecoderGenerator {
   static const String NAME = "_orderedChoice";
 
   static const String _CH = GlobalNaming.CH;
 
   static const String _DATA = GlobalNaming.DATA;
 
-  static const String _DECODE = MethodDecodeGenerator.NAME;
+  static const String _DECODE = GlobalNaming.DECODE;
 
   static const String _EOF = GlobalNaming.EOF;
 
@@ -15,7 +15,9 @@ class DecoderOrderedChoiceGenerator extends DecoderGenerator {
 
   static const String _SUCCESS = GlobalNaming.SUCCESS;
 
-  static const int _FLAG_IS_OPTIONAL = OrderedChoiceInstruction.FLAG_IS_OPTIONAL;
+  static const int _FLAG_IS_ALWAYS_OPTIONAL = OrderedChoiceInstruction.FLAG_IS_ALWAYS_OPTIONAL;
+
+  static const int _FLAG_IS_ALWAYS_ZERO_OR_MORE = OrderedChoiceInstruction.FLAG_IS_ALWAYS_ZERO_OR_MORE;
 
   static const int _OFFSET_FLAG = OrderedChoiceInstruction.STRUCT_ORDERED_CHOICE_FLAG;
 
@@ -53,8 +55,13 @@ void $NAME(int cp) {
     if($_CH == $_EOF) {      
       instructions = $_DATA[offset + $_OFFSET_INSTRUCTIONS];
     } else {
-      if ($_DATA[offset + $_OFFSET_FLAG] & $_FLAG_IS_OPTIONAL != 0) {      
-        $_RESULT = null;
+      var flag = $_DATA[offset + $_OFFSET_FLAG];
+      if (flag & $_FLAG_IS_ALWAYS_OPTIONAL != 0) {
+        if (flag & $_FLAG_IS_ALWAYS_ZERO_OR_MORE != 0) {
+           $_RESULT = [];
+        } else {
+           $_RESULT = null;
+        }        
         $_SUCCESS = true;      
       } else {
         $_RESULT = null;
@@ -84,7 +91,7 @@ void $NAME(int cp) {
 }
 ''';
 
-  DecoderOrderedChoiceGenerator(InterpreterClassGenerator interpreterClassGenerator) : super(interpreterClassGenerator) {
+  OrderedChoiceDecoderGenerator() {
     addTemplate(_TEMPLATE, _template);
   }
 

@@ -32,7 +32,6 @@ class Compiler {
       case InstructionTypes.NOT_PREDICATE:
       case InstructionTypes.ONE_OR_MORE:
       case InstructionTypes.OPTIONAL:
-      case InstructionTypes.SEQUENCE_ELEMENT:
       case InstructionTypes.ZERO_OR_MORE:
         return _compileUnary(instruction);
       case InstructionTypes.ANY_CHARACTER:
@@ -53,6 +52,8 @@ class Compiler {
         return _compileRule(instruction);
       case InstructionTypes.SEQUENCE:
         return _compileSequence(instruction);
+      case InstructionTypes.SEQUENCE_ELEMENT:
+        return _compileSequenceElement(instruction);
       default:
         throw new StateError("Unknown instruction: $instruction");
     }
@@ -154,7 +155,7 @@ class Compiler {
     var data = new List(OrderedChoiceInstruction.SIZE_OF_STRUCT_ORDERED_CHOICE);
     var structInstructions = new List<int>(instructions.length);
     var structTransitions = new List(transitions.length);
-    data[OrderedChoiceInstruction.STRUCT_ORDERED_CHOICE_FLAG] = instruction.isOptional ? 1 : 0;
+    data[OrderedChoiceInstruction.STRUCT_ORDERED_CHOICE_FLAG] = instruction.flag;
     data[OrderedChoiceInstruction.STRUCT_ORDERED_CHOICE_INSTRUCTIONS] = structInstructions;
     data[OrderedChoiceInstruction.STRUCT_ORDERED_CHOICE_TRANSITIONS] = structTransitions;
     for (var i = 0; i < instructions.length; i++) {
@@ -218,14 +219,33 @@ class Compiler {
     data[SequenceInstruction.STRUCT_SEQUENCE_INSTRUCTIONS] = structInstructions;
     for (var i = 0; i < instructions.length; i++) {
       var instruction = instructions[i];
-      if (instruction.action != 0) {
+      if (instruction.action != null) {
         flag |= 1 << i;
       }
 
       structInstructions[i] = _compile(instruction);
     }
 
-    data[SequenceInstruction.STRUCT_SEQUENCE_FLAG] = 0;
+    data[SequenceInstruction.STRUCT_SEQUENCE_FLAG] = flag;
+    _code[address + Instruction.OFFSET_DATA] = _allocate(data);
+    return address;
+  }
+
+  int _compileSequenceElement(SequenceElementInstruction instruction) {
+    if (instruction.address != null) {
+      return instruction.address;
+    }
+
+    var address = _writeInstruction(instruction);
+    // Data
+    var data = new List(SequenceElementInstruction.SIZE_OF_STRUCT_SEQUENCE_ELEMENT);
+    data[SequenceElementInstruction.STRUCT_SEQUENCE_ELEMENT_INSTRUCTION] = _compile(instruction.instruction);
+    if (instruction.instruction.action == null) {
+      data[SequenceElementInstruction.STRUCT_SEQUENCE_ELEMENT_FLAG] = 0;
+    } else {
+      data[SequenceElementInstruction.STRUCT_SEQUENCE_ELEMENT_FLAG] = 1;
+    }
+
     _code[address + Instruction.OFFSET_DATA] = _allocate(data);
     return address;
   }

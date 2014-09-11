@@ -54,7 +54,7 @@ class InstructionCloner<T extends Instruction> implements InstructionVisitor<T> 
     }
 
     for (var instruction in instruction.instructions) {
-      if(!foundInTransitions.contains(instruction)) {
+      if (!foundInTransitions.contains(instruction)) {
         throw new StateError("Broken ordered choice instruction on '$instruction'.");
       }
     }
@@ -68,13 +68,13 @@ class InstructionCloner<T extends Instruction> implements InstructionVisitor<T> 
       var transitive = <Instruction>[];
       for (var instruction in group.key) {
         var clone = clones[instruction];
-        if(clone == null) {
+        if (clone == null) {
           clone = instruction.accept(this);
           clones[instruction] = clone;
         }
 
-        for(var i = 0; i < length; i++) {
-          if(instructions[i] == instruction) {
+        for (var i = 0; i < length; i++) {
+          if (instructions[i] == instruction) {
             instructions[i] = clone;
           }
         }
@@ -85,7 +85,7 @@ class InstructionCloner<T extends Instruction> implements InstructionVisitor<T> 
       transitions.addGroup(new GroupedRangeList<List<Instruction>>(group.start, group.end, transitive));
     }
 
-    return new OrderedChoiceInstruction(instructions, transitions, instruction.isOptional);
+    return new OrderedChoiceInstruction(instructions, transitions, instruction.flag);
   }
 
   Instruction visitProductionRule(ProductionRuleInstruction instruction) {

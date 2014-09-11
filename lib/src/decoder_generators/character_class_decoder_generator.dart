@@ -1,6 +1,6 @@
-part of string_matching.interpreter_class_generator;
+part of string_matching.decoder_generators;
 
-class DecoderCharacterClassGenerator extends DecoderGenerator {
+class CharacterClassDecoderGenerator extends DecoderGenerator {
   static const String NAME = "_characterClass";
 
   static const String _CH = GlobalNaming.CH;
@@ -53,7 +53,7 @@ void $NAME(int cp) {
 }
 ''';
 
-  DecoderCharacterClassGenerator(InterpreterClassGenerator interpreterClassGenerator) : super(interpreterClassGenerator) {
+  CharacterClassDecoderGenerator() {
     addTemplate(_TEMPLATE, _template);
   }
 

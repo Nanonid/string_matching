@@ -16,7 +16,7 @@ class ProductionRuleInstruction extends Instruction {
   String name;
 
   ProductionRuleInstruction(this.id, this.name, this.instruction, {this.memoize: false}) {
-    if(memoize == null) {
+    if (memoize == null) {
       throw new ArgumentError("memoize: $memoize");
     }
   }

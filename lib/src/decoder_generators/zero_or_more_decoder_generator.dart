@@ -1,9 +1,9 @@
-part of string_matching.interpreter_class_generator;
+part of string_matching.decoder_generators;
 
-class DecoderZeroOrMoreGenerator extends DecoderGenerator {
+class ZeroOrMoreDecoderGenerator extends DecoderGenerator {
   static const String NAME = "_zeroOrMore";
 
-  static const String _DECODE = MethodDecodeGenerator.NAME;
+  static const String _DECODE = GlobalNaming.DECODE;
 
   static const String _INPUT_LEN = GlobalNaming.INPUT_LEN;
 
@@ -22,6 +22,7 @@ void $NAME(int cp) {
   $_TESTING = $_INPUT_LEN + 1;
   $_DECODE(cp);
   if (!$_SUCCESS) {
+    $_RESULT = const [];
     $_TESTING = testing;
     $_SUCCESS = true;
     return;  
@@ -41,7 +42,7 @@ void $NAME(int cp) {
 }
 ''';
 
-  DecoderZeroOrMoreGenerator(InterpreterClassGenerator interpreterClassGenerator) : super(interpreterClassGenerator) {
+  ZeroOrMoreDecoderGenerator() {
     addTemplate(_TEMPLATE, _template);
   }
 

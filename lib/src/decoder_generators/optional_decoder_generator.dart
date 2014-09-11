@@ -1,9 +1,9 @@
-part of string_matching.interpreter_class_generator;
+part of string_matching.decoder_generators;
 
-class DecoderOptionalGenerator extends DecoderGenerator {
+class OptionalDecoderGenerator extends DecoderGenerator {
   static const String NAME = "_optional";
 
-  static const String _DECODE = MethodDecodeGenerator.NAME;
+  static const String _DECODE = GlobalNaming.DECODE;
 
   static const String _SUCCESS = GlobalNaming.SUCCESS;
 
@@ -16,7 +16,7 @@ void $NAME(int cp) {
 }
 ''';
 
-  DecoderOptionalGenerator(InterpreterClassGenerator interpreterClassGenerator) : super(interpreterClassGenerator) {
+  OptionalDecoderGenerator() {
     addTemplate(_TEMPLATE, _template);
   }
 

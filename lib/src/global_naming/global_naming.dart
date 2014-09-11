@@ -1,6 +1,8 @@
 part of string_matching.global_naming;
 
 class GlobalNaming {
+  static const String ACTION = "_action";
+
   static const String ASCII = "_ascii";
 
   static const String CACHE = "_cache";
@@ -20,6 +22,8 @@ class GlobalNaming {
   static const String CURSOR = "_cursor";
 
   static const String DATA = "_data";
+
+  static const String DECODE = "_decode";
 
   static const String EOF = "-1";
 

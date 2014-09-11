@@ -1,11 +1,11 @@
-part of string_matching.interpreter_class_generator;
+part of string_matching.decoder_generators;
 
-class DecoderProductionRuleGenerator extends DecoderGenerator {
+class ProductionRuleDecoderGenerator extends DecoderGenerator {
   static const String NAME = "_productionRule";
 
   static const String _DATA = GlobalNaming.DATA;
 
-  static const String _DECODE = MethodDecodeGenerator.NAME;
+  static const String _DECODE = GlobalNaming.DECODE;
 
   static const String _RESULT = GlobalNaming.RESULT;
 
@@ -27,7 +27,7 @@ void $NAME(int cp) {
 }
 ''';
 
-  DecoderProductionRuleGenerator(InterpreterClassGenerator interpreterClassGenerator) : super(interpreterClassGenerator) {
+  ProductionRuleDecoderGenerator() {
     addTemplate(_TEMPLATE, _template);
   }
 
